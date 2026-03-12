@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thu · Fri · Sat — Full Workout Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Syne:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f0e8;
+  --surface: #ede8dc;
+  --surface2: #e4dece;
+  --ink: #1a1611;
+  --ink2: #3d3830;
+  --muted: #8a8070;
+  --border: #d4cdc0;
+  --border2: #c0b8a8;
+
+  --thu: #1a472a;
+  --thu-light: #2d7a47;
+  --thu-pale: #e8f5ec;
+
+  --fri: #1a2547;
+  --fri-light: #2d4a8a;
+  --fri-pale: #e8ecf5;
+
+  --sat: #471a1a;
+  --sat-light: #8a2d2d;
+  --sat-pale: #f5e8e8;
+
+  --mob: #7c4a00;
+  --mob-pale: #fef3e2;
+  --cal: #2a0a4a;
+  --cal-pale: #f0eafe;
+  --flex: #004a3a;
+  --flex-pale: #e2fef6;
+  --abs: #3a3a00;
+  --abs-pale: #fefee2;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* HEADER */
+.masthead {
+  background: var(--ink);
+  color: var(--bg);
+  padding: 40px 32px 32px;
+  position: relative;
+  overflow: hidden;
+}
+.masthead::before {
+  content: 'TRAIN';
+  position: absolute;
+  right: -20px;
+  top: -10px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 140px;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: -4px;
+  pointer-events: none;
+  user-select: none;
+}
+.masthead-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: rgba(245,240,232,0.45);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.masthead h1 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(36px, 7vw, 72px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.masthead h1 .accent-thu { color: #5dba7a; }
+.masthead h1 .accent-fri { color: #5d7aba; }
+.masthead h1 .accent-sat { color: #ba5d5d; }
+.masthead-sub {
+  margin-top: 14px;
+  font-size: 13px;
+  color: rgba(245,240,232,0.5);
+  font-weight: 400;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+/* DAY TABS */
+.day-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-bottom: 2px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.day-tab {
+  padding: 18px 12px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-right: 1px solid var(--border);
+  user-select: none;
+}
+.day-tab:last-child { border-right: none; }
+.day-tab-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 18px;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+.day-tab-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.day-tab.active-thu { background: var(--thu); color: white; }
+.day-tab.active-thu .day-tab-sub { color: rgba(255,255,255,0.6); }
+.day-tab.active-fri { background: var(--fri); color: white; }
+.day-tab.active-fri .day-tab-sub { color: rgba(255,255,255,0.6); }
+.day-tab.active-sat { background: var(--sat); color: white; }
+.day-tab.active-sat .day-tab-sub { color: rgba(255,255,255,0.6); }
+
+/* CONTENT */
+.day-content { display: none; }
+.day-content.active { display: block; }
+
+/* SECTION */
+.section {
+  border-bottom: 1px solid var(--border);
+}
+.section-header {
+  padding: 20px 24px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.section-label.mob { background: var(--mob-pale); color: var(--mob); }
+.section-label.str { background: #e8f0fe; color: #1a3a8a; }
+.section-label.cal { background: var(--cal-pale); color: var(--cal); }
+.section-label.flex { background: var(--flex-pale); color: var(--flex); }
+.section-label.abs { background: var(--abs-pale); color: var(--abs); }
+.section-label.run { background: #fff0e8; color: #7a3000; }
+.section-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+.section-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.section-time {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 28px;
+  color: var(--border2);
+  white-space: nowrap;
+}
+
+/* EXERCISE LIST */
+.ex-list { padding: 0 24px 20px; display: flex; flex-direction: column; gap: 8px; }
+
+/* EXERCISE ITEM */
+.ex-item {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.ex-item:hover { border-color: var(--border2); }
+.ex-item.type-mob { border-left: 3px solid var(--mob); }
+.ex-item.type-str { border-left: 3px solid #2d4a8a; }
+.ex-item.type-cal { border-left: 3px solid var(--cal); }
+.ex-item.type-flex { border-left: 3px solid var(--flex); }
+.ex-item.type-abs { border-left: 3px solid var(--abs); }
+.ex-item.type-run { border-left: 3px solid #7a3000; }
+
+.ex-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  padding: 13px 16px;
+  cursor: pointer;
+  align-items: center;
+}
+.ex-name {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+}
+.ex-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
+}
+.ex-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  padding: 2px 7px;
+  background: var(--surface2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.ex-tag.hl {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.ex-right {
+  text-align: right;
+  flex-shrink: 0;
+}
+.ex-sets {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 18px;
+  line-height: 1;
+  color: var(--ink);
+}
+.ex-muscle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 3px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.ex-chevron {
+  font-size: 10px;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+  display: block;
+  margin-top: 4px;
+}
+.ex-item.open .ex-chevron { transform: rotate(180deg); }
+
+/* DETAIL PANEL */
+.ex-detail {
+  display: none;
+  border-top: 1px solid var(--border);
+  background: var(--surface2);
+}
+.ex-item.open .ex-detail { display: block; }
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.detail-col {
+  padding: 16px 18px;
+}
+.detail-col:first-child {
+  border-right: 1px solid var(--border);
+}
+.detail-col h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.detail-col p, .detail-col li {
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.65;
+}
+.detail-col ul { padding-left: 14px; }
+.detail-col li { margin-bottom: 3px; }
+.detail-col strong { color: var(--ink); font-weight: 700; }
+
+/* VIDEO LINK */
+.video-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--fri-light);
+  text-decoration: none;
+  border: 1px solid var(--fri-light);
+  padding: 5px 10px;
+  margin-top: 10px;
+  transition: all 0.15s ease;
+}
+.video-link:hover {
+  background: var(--fri-light);
+  color: white;
+}
+.video-link::before { content: '▶'; font-size: 8px; }
+
+/* SCIENCE NOTE */
+.sci-note {
+  margin: 0 24px 16px;
+  padding: 12px 16px;
+  background: #fffbf0;
+  border: 1px solid #e8d88a;
+  border-left: 3px solid #b89a00;
+  font-size: 12px;
+  color: var(--ink2);
+  line-height: 1.6;
+}
+.sci-note strong { color: var(--ink); font-weight: 700; }
+.sci-note .sci-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #b89a00;
+  margin-bottom: 5px;
+}
+
+/* CREATINE BAR */
+.creatine-bar {
+  margin: 0 24px 16px;
+  padding: 12px 16px;
+  background: var(--ink);
+  color: var(--bg);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.creatine-bar .cr-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #5dba7a;
+  white-space: nowrap;
+}
+.creatine-bar p { font-size: 12px; color: rgba(245,240,232,0.7); line-height: 1.5; }
+.creatine-bar strong { color: var(--bg); }
+
+/* ORDER STRIP */
+.order-strip {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 14px 24px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.order-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--ink2);
+  white-space: nowrap;
+}
+.order-arrow {
+  font-size: 12px;
+  color: var(--border2);
+  padding: 0 2px;
+}
+.order-item.today-step { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+/* SESSION STATS */
+.session-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--border);
+}
+.ss {
+  padding: 14px 16px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.ss:last-child { border-right: none; }
+.ss-val {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  line-height: 1;
+}
+.ss-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* REST BLOCK */
+.rest-note {
+  padding: 24px;
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .detail-grid { grid-template-columns: 1fr; }
+  .detail-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .session-stats { grid-template-columns: repeat(2, 1fr); }
+  .order-strip { gap: 3px; }
+  .order-item { font-size: 9px; padding: 4px 7px; }
+}
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <div class="masthead-label">// Training Plan · This Weekend</div>
+  <h1><span class="accent-thu">THU</span> · <span class="accent-fri">FRI</span> · <span class="accent-sat">SAT</span></h1>
+  <p class="masthead-sub">Full sessions with mobility, calisthenics, strength, abs, flexibility & run. Click any exercise to expand cues + demo link. Today is Thursday.</p>
+</div>
+
+<!-- TABS -->
+<div class="day-tabs">
+  <div class="day-tab active-thu" onclick="showDay('thu')">
+    <div class="day-tab-name">THU</div>
+    <div class="day-tab-sub">Today · Calisthenics</div>
+  </div>
+  <div class="day-tab" onclick="showDay('fri')">
+    <div class="day-tab-name">FRI</div>
+    <div class="day-tab-sub">Chest · Shoulders · Biceps</div>
+  </div>
+  <div class="day-tab" onclick="showDay('sat')">
+    <div class="day-tab-name">SAT</div>
+    <div class="day-tab-sub">Hamstrings · Glutes</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- THURSDAY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="thu" class="day-content active">
+
+  <div class="order-strip">
+    <div class="order-item today-step">1 · Mobility warm-up</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">2 · Calisthenics skill</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">3 · Abs</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">4 · Flexibility / Yoga</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">5 · Run 2.5 km</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">6 · Post stretches</div>
+  </div>
+
+  <div class="session-stats">
+    <div class="ss"><div class="ss-val">~85'</div><div class="ss-lbl">Total time</div></div>
+    <div class="ss"><div class="ss-val">Low</div><div class="ss-lbl">Intensity</div></div>
+    <div class="ss"><div class="ss-val">2.5km</div><div class="ss-lbl">Run (Runna)</div></div>
+    <div class="ss"><div class="ss-val">5</div><div class="ss-lbl">Blocks</div></div>
+  </div>
+
+  <!-- ── 1. MOBILITY WARM-UP ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label mob">Mobility · Warm-Up</span>
+        <div class="section-title">Pre-Session Mobility</div>
+        <div class="section-meta">Dynamic · Never static cold · Longevity focus · 12–15 min</div>
+      </div>
+      <div class="section-time">12'</div>
+    </div>
+    <div class="sci-note">
+      <div class="sci-label">🔬 Science</div>
+      <strong>Dynamic mobility before training</strong> increases joint ROM, reduces injury risk by up to 35%, and primes the nervous system. These specific moves target the joints most prone to age-related degeneration: hips, thoracic spine, ankles, and shoulders. Doing this consistently is one of the highest ROI longevity investments you can make.
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">World's Greatest Stretch</div>
+            <div class="ex-tags"><span class="ex-tag hl">5 reps / side</span><span class="ex-tag">Hips · T-spine · Hamstrings · Ankles</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">5/side</div><div class="ex-muscle">Full body</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Step into a deep lunge, front foot flat</li><li>Place same-side hand on the ground</li><li>Rotate opposite arm to the sky, eyes follow hand</li><li>Then reach that arm under your body (thread the needle)</li><li>Return, repeat. Flow between positions</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=world%27s+greatest+stretch+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why for longevity</h4><p>Hits <strong>6 movement patterns in one rep</strong>. Doctors use reduced hip rotation and thoracic mobility as early markers of accelerated aging. This single exercise addresses both. Research links thoracic mobility to reduced back pain and shoulder injury.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">90/90 Hip Switches</div>
+            <div class="ex-tags"><span class="ex-tag hl">10 reps slow</span><span class="ex-tag">Hip internal + external rotation</span><span class="ex-tag">Longevity</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">10</div><div class="ex-muscle">Hips</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Sit on floor, both knees bent at 90° (one in front, one to side)</li><li>Rotate hips to switch legs to opposite side slowly</li><li>Keep torso upright throughout</li><li>Feel the deep hip stretch — don't rush</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=90+90+hip+switch+mobility" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why for longevity</h4><p>Hip internal rotation is one of the <strong>first ranges of motion lost with aging</strong>. Loss of hip IR is directly linked to knee pain, lower back pain, and reduced athletic ability. This is a 5-minute daily investment that pays off for decades.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Cat-Cow + Thoracic Extension over hands</div>
+            <div class="ex-tags"><span class="ex-tag hl">10 reps · slow breath</span><span class="ex-tag">Thoracic spine</span><span class="ex-tag">Posture</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">10</div><div class="ex-muscle">Spine</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>On all fours: arch back up (cat) then drop belly (cow) — breathe</li><li>Then: hands stacked, drop chest toward floor between hands</li><li>Push hips back slightly, feel thoracic open</li><li>Hold 3s at the stretch position</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=cat+cow+thoracic+extension+mobility" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>Thoracic kyphosis (rounding of mid-back) is the #1 posture problem linked to aging, pain, and reduced lung capacity. <strong>Daily thoracic extension work is proven to slow and reverse this process.</strong> Also directly improves your overhead press and shoulder health.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Ankle Circles + Calf Raises (slow)</div>
+            <div class="ex-tags"><span class="ex-tag hl">10 circles each direction + 10 raises</span><span class="ex-tag">Ankles · Balance · Fall prevention</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">10+10</div><div class="ex-muscle">Ankles</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Seated or standing: draw full circles with foot (both directions)</li><li>Then slow calf raise — 3s up, 3s hold, 3s down</li><li>Do on one leg for balance challenge</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=ankle+mobility+exercises+longevity" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why for longevity</h4><p>Ankle mobility is a critical predictor of fall risk in aging populations. <strong>Restricted ankle dorsiflexion</strong> also causes compensatory knee and hip stress during squats and running — fixing it improves everything downstream. 2 minutes of ankle work daily has outsized returns.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Shoulder CARs (Controlled Articular Rotations)</div>
+            <div class="ex-tags"><span class="ex-tag hl">5 slow circles each arm</span><span class="ex-tag">Shoulder joint health</span><span class="ex-tag">Rotator cuff</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">5/arm</div><div class="ex-muscle">Shoulders</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>One arm at a time, maximally tense the shoulder</li><li>Draw the LARGEST possible circle in the air — front, up, back, down</li><li>Keep torso completely still — move only the shoulder</li><li>Reverse direction. Squeeze hard throughout</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=shoulder+CARs+controlled+articular+rotation" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>CARs (from FRC/Kinstretch methodology) actively maintain joint health by lubricating cartilage and maintaining neural connection to the full range of motion. <strong>The shoulder is the most injury-prone joint in upper body training.</strong> This is the highest-value shoulder longevity exercise that exists.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 2. CALISTHENICS ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label cal">Calisthenics · Beginner</span>
+        <div class="section-title">Skill Work — Fresh Nervous System</div>
+        <div class="section-meta">65 kg assisted pull-up → progressions · Do BEFORE fatigue sets in · 20 min</div>
+      </div>
+      <div class="section-time">20'</div>
+    </div>
+    <div class="sci-note">
+      <div class="sci-label">🔬 Science</div>
+      <strong>Calisthenics skill work is neurological, not just muscular.</strong> Your nervous system learns movement patterns best when fresh. Even if you have the muscle strength, the neural pattern for pull-ups requires dedicated practice. At 65 kg assistance you're doing about 27% of your bodyweight — this is the correct starting point. Progress by reducing band assistance 5 kg every 2–3 weeks.
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Dead Hang</div>
+            <div class="ex-tags"><span class="ex-tag hl">3 × 20–30 sec</span><span class="ex-tag">Grip · Shoulder decompression · Spine</span><span class="ex-tag">Start here every session</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">3 × 25s</div><div class="ex-muscle">Foundation</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Grip bar shoulder-width, overhand</li><li>Let arms fully extend — completely relax</li><li>Breathe slowly, let gravity decompress spine</li><li>Don't shrug shoulders up — let them open</li><li>Rest 60s between sets</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=dead+hang+benefits+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why start here</h4><p><strong>Dead hang builds grip, shoulder stability, and spinal decompression simultaneously.</strong> Most people who can't do pull-ups lack the grip endurance and shoulder passive strength. This solves both. Also reverses compression from sitting. A 2019 study showed 30s dead hang provides more spinal decompression than 10 min of hanging traction therapy.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Scapular Pull-Ups (Active Hang)</div>
+            <div class="ex-tags"><span class="ex-tag hl">3 × 8–10 reps</span><span class="ex-tag">Scapula control</span><span class="ex-tag">Pull-up prerequisite</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">3 × 8</div><div class="ex-muscle">Scapula</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Dead hang position, arms fully straight</li><li>Without bending elbows: depress shoulder blades DOWN</li><li>Your body rises 5–8 cm</li><li>Hold 1 second at top, lower slowly</li><li>Elbows NEVER bend — this is not a pull-up</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=scapular+pull+up+tutorial+beginner" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why this before pull-ups</h4><p>90% of beginners who can't do pull-ups lack scapular depression strength, not arm strength. <strong>Without scapular control, doing pull-ups is like trying to lift with a disconnected chain.</strong> Master this first. When you can do 3×10 with a 2-second hold, your pull-up will appear almost automatically.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Band-Assisted Pull-Up — 65 kg band</div>
+            <div class="ex-tags"><span class="ex-tag hl">4 × 4–5 reps · controlled</span><span class="ex-tag">Full pull-up pattern</span><span class="ex-tag">Reduce band 5kg/2 weeks</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">4 × 5</div><div class="ex-muscle">Lats · Biceps</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Loop thick band on the bar, step or kneel in it</li><li>Start from dead hang — don't kip or swing</li><li>Pull elbows DOWN and BACK toward hips</li><li>Chin clears bar at top</li><li>Lower <strong>4 seconds</strong> on the way down — this builds strength faster than the up phase</li><li>Full hang between reps</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=band+assisted+pull+up+beginner+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Progression plan</h4><p><strong>Week 1–2:</strong> 65 kg band, 4×4–5<br><strong>Week 3–4:</strong> 50 kg band, 4×4–5<br><strong>Week 5–6:</strong> 35 kg band, 4×4<br><strong>Week 7–8:</strong> 20 kg band or negatives only<br><strong>Week 9–10:</strong> First unassisted pull-up<br><br>Focus more on the slow descent than the up — <strong>eccentric strength is what breaks the plateau.</strong></p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Push-Up — Slow Tempo (3-1-3)</div>
+            <div class="ex-tags"><span class="ex-tag hl">3 × 6–8 reps</span><span class="ex-tag">3s down · 1s hold · 3s up</span><span class="ex-tag">Chest · Triceps · Core</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">3 × 7</div><div class="ex-muscle">Push pattern</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Hands slightly wider than shoulders</li><li>Body forms a rigid plank — no sagging hips</li><li>3 seconds down to chest level</li><li>1 second hold at the bottom (don't rest chest on floor)</li><li>3 seconds up — full lock-out at top</li><li>If too hard: elevate hands on a bench</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=slow+tempo+push+up+tutorial+calisthenics" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why slow tempo</h4><p>Time under tension at slow tempo produces <strong>40% more muscle activation than standard speed push-ups</strong> at the same rep count. Also builds body tension awareness — the foundation of harder calisthenics like planche. Even elite gymnasts train slow push-ups.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Ring Rows (or TRX Rows) — bodyweight</div>
+            <div class="ex-tags"><span class="ex-tag hl">3 × 8–10 reps</span><span class="ex-tag">Horizontal pull pattern</span><span class="ex-tag">Back · Biceps · Core</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">3 × 8</div><div class="ex-muscle">Back</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Rings or suspension straps set at waist height</li><li>Walk feet forward until body is at ~45° angle</li><li>Pull chest to hands, elbows close to body</li><li>Harder = feet further forward (more horizontal)</li><li>Easier = more upright</li><li>Keep body rigid throughout</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=ring+row+beginner+tutorial+calisthenics" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>Ring rows are the <strong>perfect bridge between cable rows and pull-ups</strong>. They train horizontal pulling (which your gym back work covers with machines), teaching your body to stabilize under load. They also build wrist and shoulder stability essential for future calisthenics progressions.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 3. ABS ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label abs">Abs · Core</span>
+        <div class="section-title">Core Work — 4 Days/Week Minimum</div>
+        <div class="section-meta">Deep core first · Build from scratch · 12 min</div>
+      </div>
+      <div class="section-time">12'</div>
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Dead Bug — Priority #1</div>
+            <div class="ex-tags"><span class="ex-tag hl">3 × 10 reps (5 each side)</span><span class="ex-tag">Deep core · Transverse abdominis</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-muscle">Deep core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Lie on back, arms vertical, knees at 90° in the air</li><li>Press lower back firmly into floor — KEEP IT THERE</li><li>Slowly extend opposite arm + leg out (4 seconds)</li><li>Return slowly. Never let back peel off floor</li><li>If back lifts = regression: bend knee more or reduce range</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=dead+bug+exercise+tutorial+core" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why this first</h4><p>Your abs are "very weak" — this means the deep stabilisers (transverse abdominis, multifidus) are not firing correctly. <strong>Crunches do nothing for these muscles.</strong> Dead bug directly trains anti-extension core stability — the base of everything: pull-ups, squats, deadlifts, planks. Fix this and everything else improves.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Hollow Body Hold</div>
+            <div class="ex-tags"><span class="ex-tag hl">3 × 20–30 sec</span><span class="ex-tag">Full anterior chain</span><span class="ex-tag">Calisthenics foundation</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">3 × 25s</div><div class="ex-muscle">Core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Lie on back, arms overhead, legs extended 15 cm off floor</li><li>Lower back FLAT on floor — scoop pelvis</li><li>Hold. Breathe shallowly through the hold</li><li>Regression: bend knees or raise legs higher</li><li>Progression: arms by ears, legs lower</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=hollow+body+hold+tutorial+beginner" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why it's critical</h4><p>The hollow body position is the <strong>fundamental position underlying every gymnastics and calisthenics movement</strong>: pull-ups, handstands, L-sits, muscle-ups. Gymnasts spend years on this alone. You will feel this immediately even as a beginner — that's how effective it is.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Plank — Standard to Side Plank</div>
+            <div class="ex-tags"><span class="ex-tag hl">Front: 2 × 30s · Side: 2 × 20s each</span><span class="ex-tag">Anti-rotation · Obliques</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">6 sets</div><div class="ex-muscle">Full core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Forearms on floor, body straight as a board</li><li>Squeeze glutes, abs, and quads simultaneously</li><li>Don't let hips sag or pike up</li><li>Breathe out slowly during hold</li><li>Side plank: one forearm, feet stacked or staggered</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=plank+side+plank+proper+form+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Progression</h4><p>30s → 45s → 60s → RKC Plank (maximally tense version) → Plank with reach. Side plank → Side plank with hip dip → Star side plank. Add 5 seconds each week.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 4. FLEXIBILITY / YOGA ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label flex">Flexibility · Yoga</span>
+        <div class="section-title">Post-Calisthenics Yoga Flow</div>
+        <div class="section-meta">Static holds · 45–60s each · Longevity focus · 18 min</div>
+      </div>
+      <div class="section-time">18'</div>
+    </div>
+    <div class="sci-note">
+      <div class="sci-label">🔬 Science</div>
+      <strong>Static stretching after training</strong> (not before) is when muscles are warm, blood flow is high, and the stretch reflex is reduced — meaning you gain 30–50% more ROM than cold stretching. Holding 45–60 seconds triggers actual connective tissue remodeling. Less than 30 seconds is maintenance only; 45–60s is where real change happens.
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Low Lunge — Hip Flexor Stretch (Crescent Pose)</div>
+            <div class="ex-tags"><span class="ex-tag hl">60 sec each side × 2</span><span class="ex-tag">Priority #1</span><span class="ex-tag">Hip flexors · Psoas</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">2 × 60s</div><div class="ex-muscle">Hip flexors</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Back knee on mat, front foot forward</li><li>Drive hips FORWARD and DOWN (not just tilt pelvis)</li><li>Arms overhead increases the stretch</li><li>Posterior tuck pelvis slightly — flattens the low back curve</li><li>Each exhale: sink 2mm deeper</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=low+lunge+hip+flexor+stretch+yoga+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Longevity note</h4><p>Tight psoas (the deepest hip flexor) is linked to: lower back pain, anterior pelvic tilt, knee pain, and poor posture. <strong>It shortens from sitting and tightens during squats and running.</strong> This is your single most important flexibility target. 2 minutes a day, 5 days a week produces measurable change in 4–6 weeks.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Pigeon Pose</div>
+            <div class="ex-tags"><span class="ex-tag hl">90 sec each side</span><span class="ex-tag">Glutes · Piriformis · External rotators</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">90s/side</div><div class="ex-muscle">Hips / Glutes</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>From downward dog: bring one knee behind same-side wrist</li><li>Shin diagonal or parallel to mat (depth dictates this)</li><li>Hips square and level — use a block under hip if needed</li><li>Fold forward over front shin to deepen</li><li>Breathe — you will feel this intensely</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=pigeon+pose+tutorial+yoga+beginners" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>The piriformis and external hip rotators are <strong>extremely overloaded by your leg training</strong> (hip thrusts, squats, Bulgarian split squat). Without this stretch, they shorten and compress the sciatic nerve — causing the "tight glute" and potential sciatica that many lifters develop. Non-negotiable for your training volume.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Seated Forward Fold (Paschimottanasana)</div>
+            <div class="ex-tags"><span class="ex-tag hl">2 × 60 sec</span><span class="ex-tag">Hamstrings · Lower back</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">2 × 60s</div><div class="ex-muscle">Hamstrings</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Sit, legs extended. Hinge from HIPS — not lower back</li><li>Grab shins, ankles, or feet — wherever you reach</li><li>Use a strap/towel if needed — no shame</li><li>Long spine priority over reaching further</li><li>Every exhale: hinge 1cm more</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=seated+forward+fold+hamstring+stretch+yoga" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Goal</h4><p>Flat-legged toe touch within 6–8 weeks. This directly improves your deadlift depth and hamstring flexibility for Saturday. <strong>Poor hamstring flexibility is one of the top 3 causes of lower back pain</strong> — and directly limits squat and deadlift performance.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Thread the Needle + Chest Opener</div>
+            <div class="ex-tags"><span class="ex-tag hl">45 sec each side + 60s chest</span><span class="ex-tag">Thoracic · Shoulders · Chest</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">2 × 45s</div><div class="ex-muscle">T-spine / Chest</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>On all fours: slide one arm under body (palm up)</li><li>Rest shoulder and cheek on floor</li><li>Other arm can press floor for deeper rotation</li><li>Then: stand near a doorframe, arm at 90°, rotate body away</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=thread+the+needle+stretch+thoracic+rotation" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>Chest tightness from bench pressing + front delt work creates internal shoulder rotation. Over months this causes <strong>shoulder impingement, rotator cuff tears, and poor posture.</strong> This stretch directly counteracts your pressing work. Essential given your Friday chest/shoulder session.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 5. RUN ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label run">Cardio · Run</span>
+        <div class="section-title">Run 2.5 km — Zone 2 Easy</div>
+        <div class="section-meta">After everything else · Glycogen depleted = max fat burn · Runna guided</div>
+      </div>
+      <div class="section-time">15'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-run" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div>
+            <div class="ex-name">Easy Zone 2 Run · 2.5 km · Runna pace</div>
+            <div class="ex-tags"><span class="ex-tag hl">Conversational pace · 60–70% max HR</span><span class="ex-tag">Fat oxidation zone</span><span class="ex-tag">After lifting always</span></div>
+          </div>
+          <div class="ex-right"><div class="ex-sets">2.5 km</div><div class="ex-muscle">Cardio</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Pacing rule</h4><ul><li>You can speak full sentences comfortably = correct pace</li><li>If you can't talk → slow down</li><li>This is not a performance run — it's a fat-burning finisher</li><li>Trust Runna's prescribed pace</li></ul></div>
+          <div class="detail-col"><h4>Science</h4><p>After calisthenics + yoga, glycogen stores are partially depleted. Your body shifts to <strong>fat oxidation 40% faster</strong> than in a fasted or cold run. This directly attacks visceral fat (your target). Doing this 3–4x/week at this intensity is the most evidence-based protocol for visceral fat reduction.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. POST-RUN STRETCHES ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label flex">Flexibility · Post-Run</span>
+        <div class="section-title">Post-Run Static Stretches</div>
+        <div class="section-meta">3 key holds · Running-specific recovery · 8 min</div>
+      </div>
+      <div class="section-time">8'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Standing Quad Stretch + Calf Stretch against wall</div>
+          <div class="ex-tags"><span class="ex-tag hl">60 sec each side · each stretch</span><span class="ex-tag">Running recovery essentials</span></div></div>
+          <div class="ex-right"><div class="ex-sets">60s each</div><div class="ex-muscle">Quads · Calves</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Quad stretch</h4><ul><li>Stand, grab ankle behind you</li><li>Knees together — don't let stretching knee splay</li><li>Tuck pelvis slightly for deeper stretch</li><li>Hold wall or post for balance</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=standing+quad+stretch+calf+stretch+post+run" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Calf stretch</h4><ul><li>Foot against wall or step edge, heel down</li><li>Lean into the wall — feel deep in calf and achilles</li><li>Also do with knee slightly bent for soleus (deeper calf)</li><li>This prevents achilles tendinopathy — common in runners</li></ul></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="creatine-bar">
+    <div class="cr-label">⚡ Creatine</div>
+    <p><strong>Post-run</strong> with food. Add extra 500ml water today — creatine pulls water into muscles and you've sweated. Consistency beats timing.</p>
+  </div>
+
+</div><!-- end thu -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- FRIDAY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="fri" class="day-content">
+
+  <div class="order-strip">
+    <div class="order-item today-step">1 · Mobility warm-up</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">2 · Chest + Shoulders + Biceps</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">3 · Abs finisher</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">4 · Calisthenics (end)</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">5 · Flexibility / stretches</div>
+  </div>
+
+  <div class="session-stats">
+    <div class="ss"><div class="ss-val">~90'</div><div class="ss-lbl">Total time</div></div>
+    <div class="ss"><div class="ss-val">High</div><div class="ss-lbl">Intensity</div></div>
+    <div class="ss"><div class="ss-val">7</div><div class="ss-lbl">Exercises</div></div>
+    <div class="ss"><div class="ss-val">No run</div><div class="ss-lbl">Rest legs</div></div>
+  </div>
+
+  <!-- ── 1. MOBILITY WARM-UP ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label mob">Mobility · Warm-Up</span>
+        <div class="section-title">Upper Body & Shoulder Prep</div>
+        <div class="section-meta">Chest + shoulder day specific · Prevent impingement · 10 min</div>
+      </div>
+      <div class="section-time">10'</div>
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Shoulder CARs — both arms</div>
+          <div class="ex-tags"><span class="ex-tag hl">5 slow circles each arm</span><span class="ex-tag">Joint prep · Rotator cuff</span><span class="ex-tag">Non-negotiable before pressing</span></div></div>
+          <div class="ex-right"><div class="ex-sets">5/arm</div><div class="ex-muscle">Shoulders</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Max tension in shoulder, draw largest possible circle</li><li>Front → up → behind head → down</li><li>Torso stays completely still</li><li>Reverse direction after 5</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=shoulder+CARs+warm+up+before+bench+press" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Critical before pressing</h4><p><strong>Shoulder impingement is the #1 injury in chest/shoulder training.</strong> CARs prep the joint through full active range before loading it. Never bench press with cold, unwarmed shoulders. 5 minutes here prevents months of injury.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Band Pull-Aparts</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 15 reps</span><span class="ex-tag">Rear delt · Scapula retraction</span><span class="ex-tag">Counters pressing</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 15</div><div class="ex-muscle">Rear delt</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Hold band at shoulder height, arms straight</li><li>Pull band apart horizontally — squeeze shoulder blades</li><li>Hold 1 second at maximum separation</li><li>Slow return</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=band+pull+apart+tutorial+shoulder+health" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why before pressing</h4><p>Activates the rear delt and lower trapezius, which stabilize the shoulder blade during pressing. <strong>Benching with unprepared scapular stabilisers is a direct path to impingement.</strong> Do this every pressing session without exception.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Thoracic Extension over foam roller / hands</div>
+          <div class="ex-tags"><span class="ex-tag hl">10 slow reps</span><span class="ex-tag">Mid-back · Bench press ROM</span></div></div>
+          <div class="ex-right"><div class="ex-sets">10</div><div class="ex-muscle">T-spine</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Foam roller across mid-back (or hands on floor on all fours)</li><li>Arch over the roller / hands, opening chest to ceiling</li><li>Hold 2–3 seconds at end range</li><li>Move roller up/down to hit different thoracic levels</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=thoracic+extension+foam+roller+bench+press+prep" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Direct bench benefit</h4><p>Thoracic extension mobility directly determines how much you can arch on the bench press — which increases power and protects shoulders. <strong>Stiff thoracic spine = limited bench press + shoulder compensation.</strong></p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 2. MAIN STRENGTH ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label str">Strength · Push Day</span>
+        <div class="section-title">Chest · Shoulders · Biceps</div>
+        <div class="section-meta">Heaviest first · Progressive overload · 45 min</div>
+      </div>
+      <div class="section-time">45'</div>
+    </div>
+    <div class="sci-note">
+      <div class="sci-label">⚠ Bench Press</div>
+      <strong>Bench at 20 kg (bar only) is the clearest technique issue I see in your program.</strong> Your leg press is 110 kg, hip thrust 50 kg — your upper body is not this weak. The issue is almost certainly: no lat engagement, no leg drive, fear of the bar, or previous injury. Add 2.5–5 kg every session starting today. Target 40 kg within 8 weeks.
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Barbell Bench Press — progression urgency</div>
+          <div class="ex-tags"><span class="ex-tag hl">4 × 8 · Add 2.5 kg this session</span><span class="ex-tag">Start: 22.5 kg today</span><span class="ex-tag">Chest · Triceps · Front delt</span></div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 8</div><div class="ex-muscle">Chest</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Technique keys</h4><ul><li><strong>Lats first:</strong> Before unracking, "bend the bar" — pull shoulder blades together and DOWN</li><li><strong>Leg drive:</strong> Push feet into floor during the press — increases power 15–20%</li><li><strong>Touch lower chest</strong> — not collarbone or sternum middle</li><li><strong>Slight arch</strong> in lower back (natural, not extreme)</li><li>Bar path: slight diagonal from chest toward forehead</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=bench+press+proper+form+tutorial+intermediate" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>8-week progression</h4><p>Wk1: 22.5 · Wk2: 25 · Wk3: 27.5 · Wk4: 30 · Wk5: 32.5 · Wk6: 35 · Wk7: 37.5 · Wk8: 40 kg<br><br>If any week fails: repeat that weight until 4×8 is complete, then progress. <strong>Never ego-lift.</strong> Technique collapse at heavier weights will injure your shoulder.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Chest Fly Machine (Pec Dec)</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 10–12 · 20 kg</span><span class="ex-tag">Pectoralis major · Inner chest</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-muscle">Chest</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Elbows at shoulder height, slight bend</li><li>Squeeze pecs at centre — hold 1s</li><li>3-second slow return — eccentric is where growth is</li><li>Don't let weight stack touch between reps</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=pec+deck+fly+machine+proper+form" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Note</h4><p>Good isolation finisher after bench. Hits the sternal (inner) portion of the chest that bench press misses. 20 kg → 25 kg when 3×12 is easy.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Seated Dumbbell Shoulder Press</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 8–10 · 10 kg each</span><span class="ex-tag">Front + lateral delt · Triceps</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8</div><div class="ex-muscle">Shoulders</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Dumbbells at shoulder height, palms forward</li><li>Press up, slightly inward at top — don't fully lock elbows</li><li>Don't shrug at the top — depress shoulders</li><li>3 seconds down</li><li>Back flat against pad throughout</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=seated+dumbbell+shoulder+press+proper+form" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Progress</h4><p>10 kg per hand → 12 kg when 3×10 is controlled. Seated allows heavier loads safely. Next step is standing for core activation.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Lateral Raise — Slow Eccentric</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 12–15 · 6 kg · 4s down</span><span class="ex-tag">Lateral deltoid · Shoulder width</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 12</div><div class="ex-muscle">Lateral delt</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Slight forward lean and bend in elbows</li><li>Lead with elbows, not hands</li><li>Raise to just above shoulder height — not higher</li><li><strong>4 second slow descent</strong> — this is where the muscle builds</li><li>Don't swing or use momentum at all</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=lateral+raise+slow+eccentric+proper+form" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why 6 kg is correct</h4><p>Lateral raises should never be heavy. The lateral delt is small — it responds to slow, controlled isolation. <strong>Swinging 10 kg is just front delt and trap work.</strong> 6 kg done perfectly with 4s eccentric builds more lateral delt than 10 kg swings. Never go above 8–10 kg here.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Bicep Curl — Barbell or Dumbbell</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 8–10 · ~16 kg</span><span class="ex-tag">Biceps brachii · Brachialis</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8</div><div class="ex-muscle">Biceps</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Elbows fixed to sides — they don't move forward</li><li>Supinate wrist at top (pinky up)</li><li>Full extension at bottom — don't cut the range</li><li>3-second eccentric — control the drop</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=bicep+curl+proper+form+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Note</h4><p>Biceps get significant indirect work from Monday's back session. On Fridays, 3 sets is sufficient. Don't add volume — manage fatigue, not more exercises.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Hammer Curl</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 10–12 · 6 kg</span><span class="ex-tag">Brachialis · Brachioradialis · Forearms · Grip</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-muscle">Biceps / Forearm</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Neutral grip — thumbs up throughout</li><li>Alternate arms or both simultaneously</li><li>Full range, slow 3s eccentric</li><li>Elbows stay at sides</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=hammer+curl+proper+form+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Calisthenics link</h4><p>Brachialis and brachioradialis are the muscles that give arm thickness AND grip strength. <strong>Grip strength is your current limiting factor in pull-up progressions.</strong> Hammer curls directly build the grip required for dead hangs and assisted pull-ups.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 3. ABS ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label abs">Abs · Core</span>
+        <div class="section-title">Abs Finisher — Progressive</div>
+        <div class="section-meta">Slightly harder than Thursday · Add plank · 12 min</div>
+      </div>
+      <div class="section-time">12'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Dead Bug — 3 × 10</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 10 · Daily staple</span><span class="ex-tag">Deep core</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-muscle">Core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Same cues as Thursday</h4><ul><li>Back flat on floor — non-negotiable</li><li>Slow extension — 4 seconds per limb</li><li>Breathe out as you extend</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=dead+bug+exercise+tutorial+core" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Check your progress</h4><p>After 2–3 sessions of dead bugs: Can you keep your lower back down for all 10 reps? If yes — progress to a harder variation (single leg lower, or add ankle weights). If no — keep at this level. <strong>Quality over everything.</strong></p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Hollow Body Hold — push to 30s today</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 30 sec</span><span class="ex-tag">Progress from Thursday's 25s</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 30s</div><div class="ex-muscle">Core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Add 5 seconds vs Thursday</h4><p>You did 25s on Thursday. Today push to 30s. This is linear progression for your core. Each week add 5 seconds until you hit 60s. Then add ankle weights or progress to L-sit holds.</p></div>
+          <div class="detail-col"><h4>Form check</h4><p>If your lower back comes off the floor during the hold — the position is broken. Raise legs higher (easier) rather than cheating the form. An honest 20s hollow hold beats a fake 45s one.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Front Plank + Side Plank</div>
+          <div class="ex-tags"><span class="ex-tag hl">Front: 2 × 35s · Side: 2 × 25s each</span><span class="ex-tag">Anti-rotation · Obliques · Spine stability</span></div></div>
+          <div class="ex-right"><div class="ex-sets">6 sets</div><div class="ex-muscle">Full core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Squeeze glutes + abs + quads simultaneously</li><li>Body: one straight line ear to heel</li><li>Breathe steadily through the hold</li><li>Side plank: don't let hips sag</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=plank+side+plank+form+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Friday progression</h4><p>Slightly longer than Thursday. Each Friday, add 5s to each variation. Oblique strength from side planks directly supports your deadlift on Saturday — it prevents lateral spine flexion under heavy load.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. CALISTHENICS END ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label cal">Calisthenics · End of session</span>
+        <div class="section-title">Post-Strength Calisthenics</div>
+        <div class="section-meta">Lower intensity than Thursday · Reinforce patterns · 10 min</div>
+      </div>
+      <div class="section-time">10'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Push-Up Iso Hold — bottom position</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 10–20 sec hold at bottom</span><span class="ex-tag">Chest · Core · Body tension</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 15s</div><div class="ex-muscle">Push pattern</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Lower into push-up position, hover chest 3 cm from floor</li><li>Hold — full body rigid, squeeze everything</li><li>Breathe. Don't collapse</li><li>This is a chest strength endurance finisher</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=push+up+isometric+hold+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why here</h4><p>After bench press and dumbbell press, your chest and triceps are already loaded. Adding push-up iso holds creates metabolic stress and time under tension without heavy joint load. Builds the body tension awareness needed for planche progressions later.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Dead Hang — grip endurance</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × max hold (aim 30–40s)</span><span class="ex-tag">Grip · Shoulder decompression</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × max</div><div class="ex-muscle">Grip / Shoulder</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Note</h4><p>Grip will be fatigued from curls and pressing. That's fine — max hang after fatigue builds functional grip endurance faster. Also decompresses your spine and shoulders after all the pressing work.</p></div>
+          <div class="detail-col"><h4>Progress</h4><p>Track seconds each week. When you can hold 60s consistently, you're ready to move from 65 kg band assistance to 50 kg. Grip and scapular control are the two bottlenecks to your first pull-up.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. FLEXIBILITY ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label flex">Flexibility · Longevity</span>
+        <div class="section-title">Post-Session Stretches — Chest & Shoulders</div>
+        <div class="section-meta">Counter pressing tightness · Shoulder health · 10 min</div>
+      </div>
+      <div class="section-time">10'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Doorframe Chest Stretch (both arms)</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × 60 sec each side</span><span class="ex-tag">Pectoralis major · Anterior shoulder</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 60s</div><div class="ex-muscle">Chest</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Place forearm on doorframe at 90°</li><li>Rotate body away from arm — feel chest open</li><li>Vary arm height: low (lower pec), mid, high (upper pec + anterior delt)</li><li>Breathe out to deepen</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=doorframe+chest+stretch+pec+stretch+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why mandatory after chest day</h4><p>Bench pressing chronically shortens the pectoralis minor, which pulls the shoulder blade forward (anterior tilt). Over time: <strong>shoulder impingement, rotator cuff tears, and the "hunched forward" posture.</strong> 2 min of this stretch after every chest session prevents years of pain.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Sleeper Stretch — shoulder internal rotation</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × 45 sec each side</span><span class="ex-tag">Posterior capsule · Rotator cuff</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 45s</div><div class="ex-muscle">Shoulder capsule</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Lie on side, bottom arm extended at 90° from body</li><li>Use top hand to gently press bottom hand toward floor</li><li>Feel stretch in the back of the shoulder</li><li>Never force — this is a gentle, sustained stretch</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=sleeper+stretch+shoulder+posterior+capsule" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>Posterior shoulder capsule tightness is present in almost every intermediate lifter and is a major contributor to impingement. <strong>MLB pitchers and elite swimmers do this daily.</strong> Unlocking this range immediately improves overhead pressing mechanics and reduces shoulder pain risk.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Child's Pose + Lat Stretch</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × 60 sec</span><span class="ex-tag">Lats · Thoracic · Low back decompression</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 60s</div><div class="ex-muscle">Lats / Back</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Kneel, sit back toward heels, extend arms forward on floor</li><li>Walk hands to one side for lat stretch (hold 30s each side)</li><li>Let forehead rest on floor — fully surrender to gravity</li><li>Breathe deeply into your back</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=child+pose+lat+stretch+yoga+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Longevity</h4><p>Tight lats restrict shoulder elevation (raising arms overhead) and contribute to lower back pain. After a full push/pull week of training, lats are chronically tight. This stretch directly improves your pull-up range and shoulder overhead mobility.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="creatine-bar">
+    <div class="cr-label">⚡ Creatine</div>
+    <p><strong>Post-workout</strong> with your meal. No run today — but still drink 2.5–3L total water. Friday is a heavy session — prioritise protein tonight (at least 40–50g in your post-workout meal).</p>
+  </div>
+
+</div><!-- end fri -->
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- SATURDAY -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div id="sat" class="day-content">
+
+  <div class="order-strip">
+    <div class="order-item today-step">1 · Mobility warm-up</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">2 · Hamstrings + Glutes</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">3 · Abs finisher</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">4 · Calisthenics (end)</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">5 · Run (Runna)</div>
+    <div class="order-arrow">→</div>
+    <div class="order-item">6 · Flexibility post-run</div>
+  </div>
+
+  <div class="session-stats">
+    <div class="ss"><div class="ss-val">~90'</div><div class="ss-lbl">Total time</div></div>
+    <div class="ss"><div class="ss-val">High</div><div class="ss-lbl">Intensity</div></div>
+    <div class="ss"><div class="ss-val">Run</div><div class="ss-lbl">After lifting</div></div>
+    <div class="ss"><div class="ss-val">End wk</div><div class="ss-lbl">Full week done</div></div>
+  </div>
+
+  <!-- ── 1. MOBILITY WARM-UP ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label mob">Mobility · Warm-Up</span>
+        <div class="section-title">Lower Body & Hip Prep</div>
+        <div class="section-meta">Deadlift + hip thrust specific · Hamstring prep · 12 min</div>
+      </div>
+      <div class="section-time">12'</div>
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">90/90 Hip Switches</div>
+          <div class="ex-tags"><span class="ex-tag hl">10 slow reps each side</span><span class="ex-tag">Hip IR/ER · Deadlift prep</span></div></div>
+          <div class="ex-right"><div class="ex-sets">10/side</div><div class="ex-muscle">Hips</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Why before deadlifts</h4><p>Deadlift requires significant hip internal rotation to set up the hip hinge correctly. Without it, the lumbar spine compensates — leading to lower back rounding under load. This directly preps your hips for safe, powerful pulls.</p></div>
+          <div class="detail-col"><h4>Cues</h4><ul><li>Sit on floor, both knees at 90°</li><li>Rotate to switch legs — torso upright</li><li>Feel the deep hip opening each direction</li><li>Progress: add a forward fold at each switch position</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=90+90+hip+mobility+before+deadlift" target="_blank">Watch demo</a></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Glute Bridge Warm-Up — bodyweight</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × 15 reps · slow + hold</span><span class="ex-tag">Glute activation · Hip thrust prep</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 15</div><div class="ex-muscle">Glutes</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Lie on back, feet flat, knees bent</li><li>Drive hips up, squeeze glutes hard at top — 2s hold</li><li>Slow 3s descent</li><li>Then progress to single-leg version for 5 reps each</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=glute+bridge+warm+up+activation+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>Glutes are the primary muscle of the day. If they're not firing, quads and lower back compensate on hip thrusts and deadlifts — which causes injury and reduces effectiveness. This 3-minute activation ensures the right muscles are ready to work.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Standing Hip Hinge — bodyweight deadlift pattern</div>
+          <div class="ex-tags"><span class="ex-tag hl">10 reps · slow · feel the hamstring load</span><span class="ex-tag">Deadlift pattern rehearsal</span></div></div>
+          <div class="ex-right"><div class="ex-sets">10</div><div class="ex-muscle">Hamstrings</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Stand, hands on hips or arms extended</li><li>Hinge at hips — push hips BACK, not down</li><li>Keep back flat — feel hamstring stretch at bottom</li><li>Drive hips forward to return</li><li>10 reps, progressively deeper each rep</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=hip+hinge+pattern+warm+up+deadlift+preparation" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why critical</h4><p>The most common deadlift error is "squatting the deadlift" — using quads instead of the hip hinge. <strong>This warm-up grooves the correct pattern before adding weight.</strong> 10 bodyweight reps at slow tempo is worth more than any other deadlift prep.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-mob" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">World's Greatest Stretch</div>
+          <div class="ex-tags"><span class="ex-tag hl">5 reps each side</span><span class="ex-tag">Hips · Thoracic · Full body prep</span></div></div>
+          <div class="ex-right"><div class="ex-sets">5/side</div><div class="ex-muscle">Full body</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><p>Same as Thursday. This is the one mobility drill that belongs in every single warm-up, every day of the week. Lunge → rotation → thread the needle → repeat.</p>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=world%27s+greatest+stretch+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Saturday specific</h4><p>Especially important today — you've trained Mon, Wed, Thu, Fri. Your hips and thoracic spine are accumulated-fatigue tight. This will feel significantly tighter than Thursday. That's normal and that's exactly why you do it.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 2. MAIN STRENGTH ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label str">Strength · Posterior Chain</span>
+        <div class="section-title">Hamstrings + Glutes</div>
+        <div class="section-meta">Deadlift first · Heaviest compound always first · 45 min</div>
+      </div>
+      <div class="section-time">45'</div>
+    </div>
+    <div class="ex-list">
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Conventional Deadlift — first, heaviest</div>
+          <div class="ex-tags"><span class="ex-tag hl">4 × 5 reps · Tell me your weight</span><span class="ex-tag">Full posterior chain · Hams · Glutes · Back</span></div></div>
+          <div class="ex-right"><div class="ex-sets">4 × 5</div><div class="ex-muscle">Compound</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Technique keys</h4><ul><li>Bar over mid-foot (about 2-3 cm from shins)</li><li>Hip-width stance, toes slightly out</li><li>Hinge to grip — don't squat down to the bar</li><li>Big breath → brace core → pull</li><li>Bar stays touching legs the entire pull</li><li><strong>4×5 rep scheme</strong> = strength-focused (not 3×8)</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=conventional+deadlift+proper+form+tutorial+beginner" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why 4×5</h4><p>Lower reps with heavier load builds more strength than 3×8 for compound lifts. The deadlift is a skill — 5 clean reps develops the pattern better than 8 fatigued ones. Rest 3 full minutes between sets. <strong>Deadlift demands full recovery between sets at intermediate level.</strong></p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Hip Thrust — 50 kg</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 10–12 · 1s squeeze at top</span><span class="ex-tag">Glute maximus — peak contraction</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-muscle">Glutes</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Upper back on bench, bar across hip crease (use foam pad)</li><li>Feet flat, hip-width, toes slightly out</li><li>Drive hips UP — full extension at top</li><li>Squeeze glutes hard — hold 1 full second</li><li>Don't hyperextend lumbar at the top</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=hip+thrust+proper+form+barbell+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Progression</h4><p>50 kg × 12 consistently → move to 60 kg. Glutes are your largest muscle — they can and should be loaded heavily. Hip thrust also directly activates the glutes in their shortened position, which deadlift misses (deadlift hits the stretched position). Together = complete glute development.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Single-Leg Romanian Deadlift</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 8 each leg · light dumbbell</span><span class="ex-tag">Hamstrings · Glutes · Balance · Imbalance fix</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 8/leg</div><div class="ex-muscle">Unilateral</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Stand on one leg, slight knee bend</li><li>Hinge forward extending rear leg behind as counterbalance</li><li>Hips SQUARE — don't let raised hip rotate open</li><li>Feel stretch in hamstring of standing leg</li><li>Return slow and controlled — 3 second eccentric</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=single+leg+romanian+deadlift+tutorial+dumbbell" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why unilateral</h4><p>After conventional deadlift, this catches left-right strength imbalances that bilateral exercises hide. Research shows most people have 8–15% strength difference between legs. This exercise finds and fixes that. Also essential for running mechanics and knee stability.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Lying Leg Curl Machine</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 10–12 · 30 kg · 3s eccentric</span><span class="ex-tag">Hamstring isolation · Biceps femoris</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-muscle">Hamstrings</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Hips pressed INTO the pad — don't let them rise</li><li>Curl to 90° or beyond — full range</li><li>3-second eccentric — controlled drop</li><li>Pointed toes = more biceps femoris</li><li>Dorsiflexed (pulled up) toes = more medial hamstring</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=lying+leg+curl+machine+proper+form" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Note</h4><p>Good isolation finisher. 30 kg is solid — add 5 kg when 3×12 is easy. The 3-second eccentric is non-negotiable: this is where the hypertrophic stimulus is concentrated for hamstrings specifically.</p></div>
+        </div></div>
+      </div>
+
+      <div class="ex-item type-str" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Nordic Hamstring Curl — negatives</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 3–5 negatives · 5 sec descent</span><span class="ex-tag">Injury prevention · Eccentric strength</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 4</div><div class="ex-muscle">Hamstrings</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Kneel on mat, feet anchored under bench or bar</li><li>Arms crossed or at sides</li><li>Lower body toward floor as SLOWLY as possible — aim 5 seconds</li><li>Catch yourself with hands at bottom</li><li>Push back up with hands, use hamstrings to return</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=nordic+hamstring+curl+beginner+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why critical with running</h4><p>Nordic curls reduce hamstring injury risk by <strong>51%</strong> in athletes (peer-reviewed, multiple studies). With running in your programme, this is injury insurance. They build eccentric hamstring strength — which no machine can replicate. Hard, but critical.</p></div>
+        </div></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── 3. ABS ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label abs">Abs · Core</span>
+        <div class="section-title">Weekly Progression — Hardest Session</div>
+        <div class="section-meta">End of week · Push holds further · 12 min</div>
+      </div>
+      <div class="section-time">12'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Dead Bug — final session of week</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 10 · Check: is it getting easier?</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 10</div><div class="ex-muscle">Deep core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Weekly check</h4><p>If dead bug 3×10 is feeling controlled and your back stays down consistently: next week, extend the time of each rep (5s out instead of 4s) OR add a small ankle weight. Progressive overload applies to core too.</p></div>
+          <div class="detail-col"><h4>If still hard</h4><p>Continue at same difficulty. Never rush the progression. Dead bug done wrong is worthless — done right, it's one of the most effective core exercises in physical therapy and sports science.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Hollow Body Hold — 35s target today</div>
+          <div class="ex-tags"><span class="ex-tag hl">3 × 35 sec · +5s vs Friday</span></div></div>
+          <div class="ex-right"><div class="ex-sets">3 × 35s</div><div class="ex-muscle">Core</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Week 1 progression</h4><p>Thu: 25s → Fri: 30s → Sat: 35s. Next week: Thu: 30s → Fri: 35s → Sat: 40s. Target: reach 60s in 7 weeks. Then begin L-sit progressions.</p></div>
+          <div class="detail-col"><h4>Note</h4><p>Your core will be noticeably more fatigued than Monday. That's correct — you've trained abs 4 times this week. This cumulative stimulus drives adaptation. Rest Sunday and your core will come back stronger.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-abs" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Side Plank with Hip Dip — progression</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × 8 dips each side</span><span class="ex-tag">Obliques · Lateral core · QL</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 8/side</div><div class="ex-muscle">Obliques</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Side plank position (forearm)</li><li>Lower hips toward floor (dip) — controlled</li><li>Drive back up to straight position and squeeze</li><li>8 controlled dips each side</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=side+plank+hip+dip+oblique+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why this Saturday</h4><p>Harder than the static side plank you did Fri/Thu. Dynamic oblique work is the next progression step. Oblique strength directly supports your deadlift and running mechanics by preventing lateral flexion under load.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. CALISTHENICS END ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label cal">Calisthenics · End of session</span>
+        <div class="section-title">End-of-Week Calisthenics</div>
+        <div class="section-meta">Legs are fatigued — upper body calisthenics only · 10 min</div>
+      </div>
+      <div class="section-time">10'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Dead Hang — end of week max hold</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × max hold · Track seconds</span><span class="ex-tag">Grip endurance · Spine decompression</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × max</div><div class="ex-muscle">Grip / Shoulder</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Track it</h4><p>Write down your max hang time every Saturday. This is your primary calisthenics progress marker this month. When Saturday max hold reaches 60s, you reduce band assistance by 10 kg on Thursdays.</p></div>
+          <div class="detail-col"><h4>Spine bonus</h4><p>After deadlifts and hip thrusts, your spine is compressed from axial loading. Dead hang decompresses it — creating space between vertebrae. Feels incredible and is actually therapeutic post-deadlift.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-cal" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Scapular Pull-Ups — end of week check</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × 8 reps</span><span class="ex-tag">Technique check · Scapula control</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 8</div><div class="ex-muscle">Scapula</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Note</h4><p>With back muscles fatigued from deadlifts, scapular pull-ups will feel harder than Thursday. That's fine — you're not looking for max performance, just reinforcing the pattern. 2 sets to groove the motor pattern before Sunday rest.</p></div>
+          <div class="detail-col"><h4>Progress marker</h4><p>When you can do 3×10 scapular pull-ups with a 2-second hold and feel controlled, you're ready to begin negative pull-ups as the primary calisthenics drill (replacing band-assisted). This typically takes 3–4 weeks at your current level.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. RUN ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label run">Cardio · Run</span>
+        <div class="section-title">Run — After All Lifting</div>
+        <div class="section-meta">Easy cooldown pace · Runna guided · Fat burning finisher</div>
+      </div>
+      <div class="section-time">15'</div>
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-run" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Easy Zone 2 Run · Runna pace</div>
+          <div class="ex-tags"><span class="ex-tag hl">Runna distance · Legs will be heavy — that is expected</span><span class="ex-tag">Fat oxidation · Visceral fat target</span></div></div>
+          <div class="ex-right"><div class="ex-sets">Runna</div><div class="ex-muscle">Cardio</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How it will feel</h4><p>Legs will be heavy from deadlifts and glute work. Slow down if needed — this is not a PR run. Zone 2 means conversational pace. The metabolic benefit happens regardless of speed.</p></div>
+          <div class="detail-col"><h4>Science</h4><p>Post-resistance training, your body is already in a catabolic state and glycogen is depleted from strength work. Running now shifts fat utilisation significantly higher. <strong>This combination — strength then zone 2 cardio — is the most effective protocol for visceral fat reduction.</strong></p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. POST-RUN FLEXIBILITY ── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <span class="section-label flex">Flexibility · Longevity</span>
+        <div class="section-title">End-of-Week Full Body Stretches</div>
+        <div class="section-meta">Longest stretch session of the week · Muscles maximally warm · 15 min</div>
+      </div>
+      <div class="section-time">15'</div>
+    </div>
+    <div class="sci-note">
+      <div class="sci-label">🔬 Best time to stretch</div>
+      <strong>Saturday post-run is the optimal time for your deepest flexibility work</strong> — you've done 5 training days, muscles are thoroughly warmed and conditioned, and you have 2 full rest days ahead for adaptation. Research shows flexibility gains made post-workout last significantly longer than cold stretching.
+    </div>
+    <div class="ex-list">
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Pigeon Pose — deepest session of week</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 min each side</span><span class="ex-tag">Glutes · Piriformis · Post deadlift essential</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 2 min</div><div class="ex-muscle">Hips / Glutes</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Saturday version</h4><p>Longest hold of the week. After deadlifts and hip thrusts, the piriformis and glute medius are extremely tight. 2 full minutes each side is the minimum for real tissue change. Use a yoga block under hip if needed.</p>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=pigeon+pose+deep+variation+yoga" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Deepen it</h4><p>Progress from upright → forearms on floor → forehead on floor over weeks. Each progression is a flexibility milestone. Flat pigeon pose (forehead to floor) = intermediate hip flexibility achieved.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Supine Figure-4 Stretch (reclined pigeon)</div>
+          <div class="ex-tags"><span class="ex-tag hl">90 sec each side</span><span class="ex-tag">Glutes · IT band · Hip rotators</span></div></div>
+          <div class="ex-right"><div class="ex-sets">90s/side</div><div class="ex-muscle">Glutes / IT band</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>How to do it</h4><ul><li>Lie on back, cross one ankle over opposite knee (figure-4)</li><li>Bring both legs toward chest</li><li>Hold behind lower thigh or shin</li><li>Feel stretch in crossed-leg glute</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=figure+4+stretch+piriformis+lying+tutorial" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Why</h4><p>Easier than pigeon pose for beginners — same muscle target. Lying on back makes it more relaxed and the hold can be deeper. This and pigeon pose together fully release the posterior hip — the most overloaded area in your training.</p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Seated Hamstring + Calf Stretch</div>
+          <div class="ex-tags"><span class="ex-tag hl">2 × 60 sec each · Post-run mandatory</span><span class="ex-tag">Achilles health · Running recovery</span></div></div>
+          <div class="ex-right"><div class="ex-sets">2 × 60s</div><div class="ex-muscle">Hamstrings / Calves</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>Cues</h4><ul><li>Seated: legs extended, hinge from hips to reach feet</li><li>Hold for 60s — deepest forward fold of the week</li><li>Then: stand, foot against wall for calf stretch</li><li>Both straight-knee and bent-knee versions</li></ul>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=hamstring+calf+stretch+post+run+recovery" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Longevity</h4><p>Achilles tendinopathy is one of the most common running injuries and one of the most preventable. Calf and soleus stretching after every run session dramatically reduces risk. <strong>Saturday's post-run stretch is your most important injury prevention block of the week.</strong></p></div>
+        </div></div>
+      </div>
+      <div class="ex-item type-flex" onclick="toggleEx(this)">
+        <div class="ex-row">
+          <div><div class="ex-name">Low Lunge Hip Flexor — end of week</div>
+          <div class="ex-tags"><span class="ex-tag hl">90 sec each side</span><span class="ex-tag">Psoas · Hip flexor · Post-run release</span></div></div>
+          <div class="ex-right"><div class="ex-sets">90s/side</div><div class="ex-muscle">Hip flexors</div><div class="ex-chevron">▾</div></div>
+        </div>
+        <div class="ex-detail"><div class="detail-grid">
+          <div class="detail-col"><h4>After running specifically</h4><p>Running contracts the hip flexors thousands of times per km. After your run, the psoas is tight and shortened. This stretch directly reverses that shortening before 2 days of rest — which means you start Monday fresh and without accumulated tightness.</p>
+          <a class="video-link" href="https://www.youtube.com/results?search_query=low+lunge+hip+flexor+stretch+post+run" target="_blank">Watch demo</a></div>
+          <div class="detail-col"><h4>Week completed</h4><p>This is the last exercise of your training week. After this: rest, eat, sleep. Sunday is full rest. Your body will repair everything tonight and tomorrow — this is when strength, flexibility and skill gains are actually consolidated.</p></div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="creatine-bar">
+    <div class="cr-label">⚡ Creatine · End of Week</div>
+    <p><strong>Post-workout</strong> with food. Full training week complete. Take creatine tomorrow (Sunday) with breakfast — rest day dosing maintains muscle saturation. Drink 3L water today. You've earned the rest.</p>
+  </div>
+
+</div><!-- end sat -->
+
+<script>
+function showDay(day) {
+  document.querySelectorAll('.day-content').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.day-tab').forEach(t => {
+    t.classList.remove('active-thu','active-fri','active-sat');
+  });
+  document.getElementById(day).classList.add('active');
+  const tabs = document.querySelectorAll('.day-tab');
+  const days = ['thu','fri','sat'];
+  const idx = days.indexOf(day);
+  tabs[idx].classList.add('active-' + day);
+}
+
+function toggleEx(item) {
+  item.classList.toggle('open');
+}
+
+// init
+showDay('thu');
+</script>
+</body>
+</html>
